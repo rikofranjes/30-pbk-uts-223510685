@@ -1,5 +1,5 @@
 :root {
-  --primary: #7900FF;
+  --primary: blue;
   --business: #32c091;
   --personal: var(--primary);
   /* --light: #EEE; */
@@ -35,7 +35,7 @@ button {
 body {
   background: var(--light);
   color: var(--dark);
-  background-image: linear-gradient(to right, #F7F6BB, #FCDC2A);
+  background-image: linear-gradient(to right, white , silver);
 }
 
 .app {
@@ -44,7 +44,7 @@ body {
 }
 
 section {
-  margin-top: 2rem;
+  margin-top: 3rem;
   margin-bottom: 2rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -54,7 +54,8 @@ h3 {
   color: var(--dark);
   font-size: 1rem;
   font-weight: 400;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  margin-top: 5.3rem;
 }
 
 h4 {
@@ -88,14 +89,14 @@ h4 {
 
 .create-todo input[type="text"] {
   display: block;
-  width: 100%;
+  width: 75%;
   font-size: 1.125rem;
   padding: 1rem 1.5rem;
   color: var(--dark);
   background-color: white;
   border-radius: 0.5rem;
   box-shadow: var(--shadow);
-  margin-bottom: 1.5rem;
+  margin-bottom: -3.4rem;
 }
 
 .create-todo .options {
@@ -122,16 +123,23 @@ input[type="checkbox"] {
   display: none;
 }
 
+
 .bubble {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid var(--business);
+  width: 20px; 
+  height: 20px; 
+  border-radius: 5px; 
+  border: 2px solid var(white); 
+  color:silver;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   box-shadow: var(--business-glow);
 }
+
+
 
 .bubble.personal {
   border-color: var(--personal);
@@ -169,7 +177,7 @@ input:checked~.bubble::after {
 
 .create-todo input[type="submit"] {
   display: block;
-  width: 100%;
+  width: 25%;
   font-size: 1.125rem;
   padding: 1rem 1.5rem;
   color: #FFF;
@@ -178,11 +186,17 @@ input:checked~.bubble::after {
   box-shadow: var(--personal-glow);
   cursor: pointer;
   transition: 0.2s ease-in-out;
+  float: right;
 }
 
 .create-todo input[type="submit"]:hover {
   opacity: 0.75;
 }
+ .list1{
+ background-image: url('2.jpg');
+ background-size: cover;
+ }
+
 
 .todo-list .list {
   margin: 1rem 0;
@@ -191,26 +205,29 @@ input:checked~.bubble::after {
 .todo-list .todo-item {
   display: flex;
   align-items: center;
-  background-color: #FFF;
+  border-radius: 0 0 16px 16px;
   padding: 1rem;
-  border-radius: 0.5rem;
+  border-radius: ;
   box-shadow: var(--shadow);
-  margin-bottom: 1rem;
+  margin-bottom: 0.7rem;
+  width: 50%;
+  margin-left: 415px;
 }
 
 .todo-item label {
   display: block;
-  margin-right: 1rem;
+  margin-right: 0.3rem;
   cursor: pointer;
 }
 
 .todo-item .todo-content {
   flex: 1 1 0%;
+  
 }
 
 .todo-item .todo-content input {
-  color: var(--dark);
-  font-size: 1.125rem;
+  color: white;
+  font-size: 2rem;
 }
 
 .todo-item .actions {
@@ -246,6 +263,8 @@ input:checked~.bubble::after {
 }
 
 /* style.css */
+
+
 
 .filter-todos {
   margin-top: 20px;

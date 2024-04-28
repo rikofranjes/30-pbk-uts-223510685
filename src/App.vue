@@ -36,7 +36,10 @@ const addTodo = () => {
 }
 
 const removeTodo = todo => {
-  todos.value = todos.value.filter(t => t !== todo)
+  const index = todos.value.findIndex(t => t === todo)
+  if (index !== -1) {
+    todos.value.splice(index, 1)
+  }
 }
 
 watch(todos, newVal => {
@@ -63,27 +66,23 @@ onMounted(() => {
 <template>
   <main class="app">
 
-    <section class="greeting">
-      <h2 class="title">
-        Hello, <input class="text" type="text" placeholder="Buat nama disini" v-model="name" />
-      </h2>
-    </section>
 
     <section class="create-todo">
-      <h3>Buat Kegiatan</h3>
 
       <form @submit.prevent="addTodo">
-        <h4>Apa isi daftar kegiatan mu?</h4>
-        <input type="text" placeholder="contoh [membaca Buku]" v-model="input_content" />
+        <h4>Buatlah daftar kegian anda</h4>
+        <input type="text" placeholder="contoh [ Lari pagi ]" v-model="input_content" /> 
         <input type="submit" value="Tambah Kegiatan" />
+       
       </form>
     </section>
 
     <section class="todo-list">
-      <h3>Daftar Kegiatan</h3>
+      <h3 class="kegiatan">Daftar Kegiatan </h3>
 
+      <div class="list1">
       <div class="filter">
-        <button @click="filterCompleted = !filterCompleted">{{ filterCompleted ? 'Tampilkan Semua' : 'Tampilkan sudah selesai' }}</button>
+        <button @click="filterCompleted = !filterCompleted">{{ filterCompleted ? 'Tampilkan' : 'Sudah selesai' }}</button>
       </div>
 
       <div class="list">
@@ -104,6 +103,7 @@ onMounted(() => {
           </div>
 
         </div>
+      </div>
 
       </div>
     </section>
@@ -134,4 +134,4 @@ onMounted(() => {
 .filter button:hover {
   background-color: #45a049;
 }
-</style>
+</style> 
