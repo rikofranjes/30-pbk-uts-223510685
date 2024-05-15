@@ -2,9 +2,9 @@
   <main class="app">
     <header>
       <nav>
-        <ul >
-          <button @click="activeTab = 'Todos'" :class="{ 'active': activeTab === 'Todos' }" class="app1">Todos</button><br>
-          <button @click="activeTab = 'Post'" :class="{ 'active': activeTab === 'Post' }"class="app1">Post</button>
+        <ul class="todos1">
+          <li @click="activeTab = 'Todos'" :class="{ 'active': activeTab === 'Todos' }" class="todos">Todos</li>
+          <li @click="activeTab = 'Post'" :class="{ 'active': activeTab === 'Post' }"class="todos">Post</li>
         </ul>
       </nav>
     </header>
@@ -25,18 +25,22 @@
           </div>
 
           <div class="list">
+            
             <div v-for="todo in filteredTodos" :key="todo.createdAt" :class="`todo-item ${todo.done && 'done'}`">
-              <label>
-                <input type="checkbox" v-model="todo.done" />
-                <span :class="`bubble ${todo.category}`"></span>
-              </label>
-              <div class="todo-content">
-                <input type="text" v-model="todo.content" />
-              </div>
-              <div class="actions">
-                <button class="delete" @click="removeTodo(todo)">Delete</button>
-              </div>
-            </div>
+          <label>
+          <input type="checkbox" v-model="todo.done" />
+          <span :class="`bubble ${todo.category}`"></span>
+          </label>
+
+          <div class="todo-content">
+          <input type="text" v-model="todo.content" :readonly="true" />
+          </div>
+
+          <div class="actions">
+         <button class="delete" @click="removeTodo(todo)">Delete</button>
+        </div>
+          </div>
+
           </div>
         </div>
       </div>
@@ -44,11 +48,11 @@
 
     <section v-if="activeTab === 'Post'" class="post-section">
       <h3>Pilih User:</h3>
-      <select v-model="selectedUser">
+      <select v-model="selectedUser" @change="loadPosts(selectedUser)">
         <option v-for="user in users" :key="user.id" :value="user.id">{{ user.name }}</option>
       </select>
 
-      <div v-if="!loading">
+      <div v-if="posts.length">
         <h3>Postingan User: {{ selectedUser }}</h3>
         <div v-for="post in filteredPosts" :key="post.id">
           <h4>{{ post.title }}</h4>
@@ -143,26 +147,30 @@ const loadPosts = async (userId) => {
     loading.value = false
   }
 }
-onMounted(async () => {
-  // Fetch users and posts data from the API
-  const usersResponse = await fetch('https://jsonplaceholder.typicode.com/users')
-  const postsResponse = await fetch('https://jsonplaceholder.typicode.com/posts?_expand=user')
-  users.value = await usersResponse.json()
-  posts.value = await postsResponse.json()
-  loading.value = false; // Menandai loading selesai setelah data terambil
-})
 
+onMounted(async () => {
+  try {
+    const response = await fetch('https://jsonplaceholder.typicode.com/users')
+    users.value = await response.json()
+    await loadPosts(selectedUser.value)
+  } catch (error) {
+    console.error('Error fetching users:', error)
+  }
+})
 </script>
 
 <style scoped>
 /* Your CSS styles here */
 .create-todo .todo-content input[type="text"] {
-  color: white;
+  color: black;
   background-color: rgba(0, 0, 0, 0);
+  margin-bottom:10px;
+  height: 40px;
 }
 
 .filter {
-  margin-bottom: 10px;
+  margin-bottom: 4px;
+ 
 }
 
 .filter button {
@@ -183,10 +191,6 @@ onMounted(async () => {
   background-color: #45a049;
 }
 
-.list {
-  margin-top: -50px;
-  padding: 35px;
-}
 .app1{
   margin-top: 8px;
   background-color: blue;
@@ -197,4 +201,36 @@ onMounted(async () => {
 .app1:hover{
   background-color: #45a049;
 }
+
+header {
+  background-color: #f3f3f3;
+  padding: 10px 0;
+  text-align: center;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+nav ul li.active {
+  font-weight: bold;
+}
+
+section {
+  margin-top: 20px;
+}
+
+select {
+  padding: 5px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
 </style>

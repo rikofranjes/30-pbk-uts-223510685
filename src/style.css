@@ -89,7 +89,7 @@ h4 {
 
 .create-todo input[type="text"] {
   display: block;
-  width: 75%;
+  width: 59%;
   font-size: 1.125rem;
   padding: 1rem 1.5rem;
   color: var(--dark);
@@ -130,7 +130,7 @@ input[type="checkbox"] {
   justify-content: center;
   width: 20px; 
   height: 20px; 
-  border-radius: 5px; 
+  border-radius: 0.5rem; 
   border: 2px solid var(white); 
   color:silver;
   font-weight: bold;
@@ -154,7 +154,7 @@ input[type="checkbox"] {
   height: 0px;
   background-color: var(--business);
   box-shadow: var(--business-glow);
-  border-radius: 50%;
+  border-radius: 10%;
   transition: 0.2s ease-in-out;
 }
 
@@ -173,24 +173,28 @@ input:checked~.bubble::after {
   color: var(--dark);
   font-size: 1.125rem;
   margin-top: 1rem;
+ 
 }
 
 .create-todo input[type="submit"] {
   display: block;
-  width: 25%;
+  width: 17%;
   font-size: 1.125rem;
   padding: 1rem 1.5rem;
   color: #FFF;
   background-color: var(--primary);
   border-radius: 0.5rem;
-  box-shadow: var(--personal-glow);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 1);
   cursor: pointer;
   transition: 0.2s ease-in-out;
   float: right;
+  margin-right: 244px;
+  
 }
 
 .create-todo input[type="submit"]:hover {
   opacity: 0.75;
+  background-color: #45a049;
 }
  .list1{
  background-image: url('2.jpg');
@@ -205,13 +209,13 @@ input:checked~.bubble::after {
 .todo-list .todo-item {
   display: flex;
   align-items: center;
-  border-radius: 0 0 16px 16px;
   padding: 1rem;
-  border-radius: ;
+  border-radius:20px ;
   box-shadow: var(--shadow);
   margin-bottom: 0.7rem;
   width: 50%;
-  margin-left: 415px;
+  margin-left: 82px;
+
 }
 
 .todo-item label {
@@ -226,7 +230,7 @@ input:checked~.bubble::after {
 }
 
 .todo-item .todo-content input {
-  color: white;
+  color: black;
   font-size: 2rem;
 }
 
@@ -338,4 +342,21 @@ input:checked~.bubble::after {
     width: 95%;
     margin: auto;
   }
+}
+.todos{
+  transition: transform 0.4s;
+  font-size:19px; 
+  margin: 10px;
+}
+.todos:hover{
+  transform: scale(1.5);
+  transition: transform 0.4s;
+}
+.todos1{
+  width: 73%;
+  background-color: white;
+  height: 60px;
+  display: flex; 
+  justify-content: center;
+  align-items: center; 
 }
