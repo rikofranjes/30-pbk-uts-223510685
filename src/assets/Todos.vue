@@ -1,9 +1,12 @@
 <template>
   <section class="create-todo">
+    <h4>Buatlah daftar kegiatan anda</h4>
     <form @submit.prevent="addTodo">
-      <h4>Buatlah daftar kegiatan anda</h4>
       <input type="text" placeholder="contoh [ Lari pagi ]" v-model="input_content" />
-      <input type="submit" value="Tambah Kegiatan" />
+      <button type="submit" class="button">
+        <span class="button__text">Tambah Kegiatan</span>
+        <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+      </button>
     </form>
 
     <div class="todo-list">
@@ -112,12 +115,40 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Your CSS styles here */
+.create-todo form {
+  display: flex;
+  align-items: center;
+  gap: 0; 
+  margin-bottom: -10px;
+}
+
+.create-todo input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 300px; /* Adjust the width as needed */
+}
+
+
+.delete{
+  border-radius: 4px 4px ;
+  margin-bottom: 10px;
+}
+.delete:hover{
+background-color: red;
+color:white;
+}
+.kegiatan{
+width: 400px;
+  font-size: 21px;
+}
+
 .create-todo .todo-content input[type="text"] {
   color: black;
-  background-color: rgba(0, 0, 0, 0);
-  margin-bottom:10px;
-  height: 40px;
+  margin-bottom:1px;
+  height: 38px;
+  width: 140px;
 }
 
 .filter {
@@ -132,8 +163,7 @@ onMounted(() => {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
+  font-size: 14px;
   cursor: pointer;
   border-radius: 5px;
 }
@@ -142,11 +172,66 @@ onMounted(() => {
   background-color: #45a049;
 }
 
-.todo-item.done .todo-content {
-  text-decoration: line-through;
+
+/*===================================================================================*/
+.button {
+  position: relative;
+  width: 140px;
+  height: 46px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid #34974d;
+  background-color: #3aa856;
+  border-radius: 4px 4px; 
+  margin-left: -5px; 
 }
 
-.todo-item.done .todo-content input {
-  text-decoration: line-through;
+.button, .button__icon, .button__text {
+  transition: all 0.3s;
+}
+
+.button .button__text {
+  transform: translateX(-4px);
+  color: #fff;
+  font-weight: 600;
+}
+
+.button .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 105%;
+  width: 39px;
+  background-color: #34974d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px 4px;
+}
+
+.button .svg {
+  width: 30px;
+  stroke: #fff;
+}
+
+.button:hover {
+  background: #34974d;
+}
+
+.button:hover .button__text {
+  color: transparent;
+}
+
+.button:hover .button__icon {
+  width: 148px;
+  transform: translateX(0);
+}
+
+.button:active .button__icon {
+  background-color: #2e8644;
+}
+
+.button:active {
+  border: 1px solid #2e8644;
 }
 </style>
